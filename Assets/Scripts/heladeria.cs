@@ -20,25 +20,36 @@ public class heladeria : MonoBehaviour
     void Start()
     {
         precioPorGramo = precioPorKilo / 1000;
-        if (gramosMinimos > inputGramos && inputGramos >gramosMaximos)
-        {Debug.Log("candidad minima: " + gramosMinimos + " cantidad maxima: " + gramosMaximos); return; }
 
-
-        if (codigo == chocoCode || codigo == ddlCode)
-        {
-            precioFinal = inputGramos * precioPorGramo;
-            Debug.Log(precioFinal);
-        }
-        else if (codigo == "FRU")
-        {
-            precioPorGramo = precioPorGramo * 0.9f;
-            precioFinal = precioPorGramo * inputGramos;
-            Debug.Log(precioFinal);
-        }
-        else
+        if (codigo != chocoCode && codigo != frutiCode && codigo != ddlCode)
         {
             Debug.Log("codigo invalido");
         }
+        if (inputGramos > 250 || inputGramos > 3000)
+        {
+            Debug.Log("candidad minima: " + gramosMinimos + " cantidad maxima: " + gramosMaximos);
+            
+        } else
+        {
+            if (codigo == chocoCode || codigo == ddlCode)
+            {
+                precioFinal = inputGramos * precioPorGramo;
+                Debug.Log(precioFinal);
+            }
+            else if (codigo == "FRU")
+            {
+                precioPorGramo = precioPorGramo * 0.9f;
+                precioFinal = precioPorGramo * inputGramos;
+                Debug.Log(precioFinal);
+            }
+            else
+            {
+                return;
+            }
+        }
+
+
+
     }
 
     // Update is called once per frame
